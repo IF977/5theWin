@@ -1,0 +1,70 @@
+<!--DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head-->
+  <body>
+    <div id="map"></div>
+    <script>
+		var geocoder;
+		function generateContent(grupo,desc,data,situacao){
+			return '<h1>'+grupo+'</h1>'+
+			'<h2>'+desc+'</h2>'+
+			'<h3>'+data+'</h3>'+
+			'<h3>'+situacao+'</h3>';
+		}
+		var map;
+		var info;
+		var infoWindow;
+		function initMap() {
+			geocoder = new google.maps.Geocoder();
+			map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 15,
+				center: {lat: -8.0540688, lng: -34.950499}
+			});
+			info = <%= render inline: @info%>;
+			geocodeAddress(info);
+		}
+
+		function geocodeAddress(info) {
+			for (i=0; i<info.length; i++){
+			(function(information){
+				geocoder.geocode({'address': information.address}, function(results, status) {
+					if (status == 'OK') {
+						var marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location
+						});
+						
+							marker.addListener('click', function() {
+								var infowindow = new google.maps.InfoWindow({
+									content: generateContent(information.grupo,information.desc,information.data,information.situacao)
+								});
+								infowindow.open(map, marker);
+							});
+						
+					} else {
+						alert('Geocode was not successful for the following reason: ' + status);
+					}
+				});
+				})(info[i]);
+			}
+		}
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIbG_4CAkBWHOqz4cwQg7gALOoW1w_vK0&callback=initMap"></script>
+  </body>
+</html>
