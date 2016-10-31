@@ -50,6 +50,8 @@
 * Programado HU 01, 02
 * Modelagem conceitual do banco
 * Modelagem lógica do banco
+
+* HU 01
 * Como um cidadão
 * Eu gostaria de reclamar publicamente sobre um problema já cadastrado
 * Para aumentar a pressão e visibilidade sobre o mesmo
@@ -62,4 +64,5 @@
 ### Considerações (o que deu certo e o que não deu)
 * Selecionamos melhor as tarefas para a iteração
 
-* 
+* Não fizemos os testes 
+* Tarefas que não podiam ter ser paralelas
