@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  def verSolicitacao
+      @id = params[:id]
+      @vereadores = [{nome: "Joao da Silva", email: "joao@hotmail.com", telefone: "(81)987654321"}, {nome: "Maria da Silva", email: "maria@hotmail.com", telefone: "(81)976543218"}, {nome: "Marcio de Aquino", email: "marcinho@bol.com.br", telefone: "(81)naomeligue"}]
+      @solicitacao = {descricao: "Problemas do Mundo", categoria:"Deu ruim", semanas:"15", cor:"#F00", letra: "F", latitude: -8.0898485,longitude:-34.8834002}
+  end
+  
   def readData
     require 'open-uri'
     require 'csv'

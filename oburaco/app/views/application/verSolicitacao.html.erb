@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <a href="/"><img style="margin-bottom:10px;" alt="Logo 5TheWin" src="/images/logo.PNG" height="50"></a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-sm-2"><img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=16&size=100x100&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>"/></div>
+        <div class="col-xs-8 col-sm-4">
+            <b><%=@solicitacao[:descricao]%></b>
+            <p><%=@solicitacao[:categoria]%></p>
+        </div>
+        <div class="col-cs-12 col-sm-6">
+            <div class="circle" style="background-color: <%=@solicitacao[:cor]%>"><%=@solicitacao[:letra]%></div>
+            <p><%=@solicitacao[:semanas]%> semanas</p>
+        </div>
+        
+    </div>
+    <div class="row">
+        <h2>Separamos 3 vereadores:</h2>
+        <% @vereadores.each do |vereador| %>
+        <div class="col-sm-1 col-xs-2">
+            <div class="circle"><%= vereador[:nome].first %></div>
+        </div>
+        <div class="col-sm-3 col-xs-10">
+            <h2 style="display: inline;"><%= vereador[:nome]%></h2>
+            <p>Email: <%= vereador[:email]%></p>
+            <p>Telefone: <%= vereador[:telefone]%></p>
+        </div>
+        <% end %>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">O buraco é mais embaixo!</p>
+    </div>
+</footer>
