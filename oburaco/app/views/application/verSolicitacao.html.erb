@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-4 col-sm-2"><img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=16&size=100x100&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>"/></div>
+        <div class="col-xs-4 col-sm-2"><img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=16&size=100x100&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8"/></div>
         <div class="col-xs-8 col-sm-4">
             <b><%=@solicitacao[:descricao]%></b>
             <p><%=@solicitacao[:categoria]%></p>
