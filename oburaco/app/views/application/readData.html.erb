@@ -19,11 +19,12 @@
     <div id="map"></div>
     <script>
 		var geocoder;
-		function generateContent(grupo,desc,data,situacao){
+		function generateContent(grupo,desc,data,situacao,id){
 			return '<h1>'+grupo+'</h1>'+
 			'<h2>'+desc+'</h2>'+
 			'<h3>'+data+'</h3>'+
-			'<h3>'+situacao+'</h3>';
+			'<h3>'+situacao+'</h3>'+
+			'<a href="/'+id+'" class="btn btn-info">Reclamar!</a>';
 		}
 		var map;
 		var info;
@@ -31,7 +32,7 @@
 			geocoder = new google.maps.Geocoder();
 			map = new google.maps.Map(document.getElementById('map'), {
 				zoom: 15,
-				center: {lat: -8.0540688, lng: -34.950499}
+				center: {lat: -8.127488, lng: -34.904665}
 			});
 			info = <%= render inline: @info%>;
 			geocodeAddress(info);
@@ -49,13 +50,13 @@
 						
 							marker.addListener('click', function() {
 								var infowindow = new google.maps.InfoWindow({
-									content: generateContent(information.grupo,information.desc,information.data,information.situacao)
+									content: generateContent(information.grupo,information.desc,information.data,information.situacao,information.id)
 								});
 								infowindow.open(map, marker);
 							});
 						
 					} else {
-						alert('Geocode was not successful for the following reason: ' + status);
+						//alert('Geocode was not successful for the following reason: ' + status);
 					}
 				});
 				})(info[i]);
