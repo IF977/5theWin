@@ -39,3 +39,9 @@
 * Interação da aplicação com mais rede sociais do que a gente esperava 
 * Programação em par funcionou! 
 
+
+### next
+* Front-end
+* Melhor uso do git
+* Finalizar o site 
+
