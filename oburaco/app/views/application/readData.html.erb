@@ -81,16 +81,31 @@
 				center: {lat: -8.127488, lng: -34.904665}
 			});
 			
-				  // Create the search box and link it to the UI element.
+			// Creating the search box and linking .
 	  var input = document.getElementById('pac-input');
 	  var searchBox = new google.maps.places.SearchBox(input);
 	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 	
-	  // Bias the SearchBox results towards current map's viewport.
 	  
-	  // map.addListener('bounds_changed', function() {
-	  //   searchBox.setBounds(map.getBounds());
-	  // });
+	  // setting the search box result to update the map
+	   google.maps.event.addListener(searchBox, 'places_changed', function() {
+	    searchBox.set('map', null);
+	    var places = searchBox.getPlaces();
+	    var bounds = new google.maps.LatLngBounds();
+	    var i, place;
+	    for (i=0; place = places[i]; i++) {
+	    	(function(place) {
+	    		var marker = new google.maps.Marker({
+	    			position: place.geometry.location
+	    		});
+
+	    		bounds.extend(place.geometry.location);
+	    	}(place));
+	    }
+	    map.fitBounds(bounds);
+	    searchBox.set('map', map);
+	  });
+
 
 			info = <%= render inline: @info%>;
 			geocodeAddress(info);
@@ -109,7 +124,9 @@
 
 
 		function geocodeAddress(info) {
+			
 			for (i=0; i<info.length; i++){
+				
 			(function(information){
 				geocoder.geocode({'address': information.address}, function(results, status) {
 					if (status == 'OK') {
@@ -118,6 +135,7 @@
 							position: results[0].geometry.location
 						});
 						
+						//listener para subir o balaozinho da demanda quando clica no marker
 							marker.addListener('click', function() {
 								var infowindow = new google.maps.InfoWindow({
 									content: generateContent(information.grupo,information.desc,information.data,information.situacao,information.id)
