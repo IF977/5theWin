@@ -11,15 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109144745) do
+ActiveRecord::Schema.define(version: 20161120184328) do
 
   create_table "demandas", force: :cascade do |t|
     t.string   "bairro"
     t.text     "rua"
     t.integer  "numero"
     t.integer  "RPA"
-    t.float    "latitude"
-    t.float    "longitude"
     t.string   "situa"
     t.date     "data_ult_situa"
     t.date     "data"
