@@ -4,6 +4,8 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>Simple markers</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <style>
       html, body {
         height: 100%;
@@ -55,6 +57,7 @@
 		  outline: none;
 		  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 		}
+		
     </style>
     
   </head>
@@ -62,15 +65,17 @@
   <body>
   	
   	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
+    <div id="map" class="hidden-xs ui-resizable">
+    </div>
     <script>
 		var geocoder;
 		function generateContent(grupo,desc,data,situacao,id){
-			return '<h1>'+grupo+'</h1>'+
+			return '<span class="glyphicon glyphicon-time" aria-hidden="true" style=font-size:50px;"></span>' + 
+			'<h1 style="display:inline-block;">'+grupo+'</h1>'+
 			'<h2>'+desc+'</h2>'+
 			'<h3>'+data+'</h3>'+
 			'<h3>'+situacao+'</h3>'+
-			'<a href="/'+id+'" class="btn btn-info">Reclamar!</a>';
+			'<center><a href="/'+id+'" class="btn btn-info">Reclamar!</a></center>';
 		}
 		var map;
 		var info;
@@ -145,11 +150,14 @@
 				})(info[i]);
 			}
 		}
-
+	
     </script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&libraries=places&callback=initMap"></script>
-
+	<script
+		src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
+		integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+		crossorigin="anonymous"></script>
 <!--https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&callback=initMap"-->
   </body>
 </html>

@@ -1,32 +1,41 @@
-<div class="container-fluid">
-    <a href="/"><img style="margin-bottom:10px;" alt="Logo 5TheWin" src="/images/logo.PNG" height="50px"/></a>
-</div>
 
-<div class="container">
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-xs-4 col-sm-2"><img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=16&size=100x100&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8"/></div>
-        <div class="col-xs-8 col-sm-4">
-            <b><%=@solicitacao[:descricao]%></b>
-            <p><%=@solicitacao[:categoria]%></p>
+        <div class="col-md-3 col-xs-4 col-sm-2"></div>
+        <div class="col-md-6 col-xs-8 col-sm-4">
+            <div class="col-md-3">
+                <img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=16&size=100x100&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8"/>
+            </div>
+            <div class="col-md-6">
+                <b><%=@solicitacao[:descricao]%></b>
+                <p><%=@solicitacao[:categoria]%></p>
+            </div>
+            <div class="col-md-3">
+                <img src="/images/clock.png" height="80px" alt="imagem de um relogio"/>
+                <p><%=@solicitacao[:semanas]%> semanas</p>
+            </div>
         </div>
-        <div class="col-cs-12 col-sm-6">
-            <img src="/images/clock.png" height="80px" alt="imagem de um relogio"/>
-            <p><%=@solicitacao[:semanas]%> semanas</p>
+        <div class="col-md-3 col-xs-12 col-sm-6">
         </div>
         
     </div>
     <div class="row">
         <h2>Separamos 3 vereadores:</h2>
-        <% @vereadores.each do |vereador| %>
-        <div class="col-sm-1 col-xs-2">
-            <div class="circle"><%= vereador[:nome].first %></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <% @vereadores.each do |vereador| %>
+            <div class="col-sm-1 col-xs-2">
+                <div class="circle"><%= vereador[:nome].first %></div>
+            </div>
+            <div class="col-sm-3 col-xs-10">
+                <h2 style="display: inline;"><%= vereador[:nome]%></h2>
+                <p>Email: <%= vereador[:email]%></p>
+                <p>Telefone: <%= vereador[:telefone]%></p>
+            </div>
+            <% end %>
         </div>
-        <div class="col-sm-3 col-xs-10">
-            <h2 style="display: inline;"><%= vereador[:nome]%></h2>
-            <p>Email: <%= vereador[:email]%></p>
-            <p>Telefone: <%= vereador[:telefone]%></p>
-        </div>
-        <% end %>
+        <div class="col-sm-1"></div>
     </div>
 </div>
 <footer class="footer">
