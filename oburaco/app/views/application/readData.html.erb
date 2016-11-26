@@ -1,4 +1,4 @@
-<!--DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -13,9 +13,55 @@
       #map {
         height: 100%;
       }
+      
+			#pac-input {
+			  background-color: #fff;
+			  font-family: Roboto;
+			  font-size: 15px;
+			  font-weight: 300;
+			  margin-left: 12px;
+			  padding: 0 11px 0 13px;
+			  text-overflow: ellipsis;
+			  width: 300px;
+			}
+			
+			#pac-input:focus {
+			  border-color: #4d90fe;
+			}
+			
+			.pac-container {
+			  font-family: Roboto;
+			}
+			
+			#type-selector {
+			  color: #fff;
+			  background-color: #4d90fe;
+			  padding: 5px 11px 0px 11px;
+			}
+			
+			#type-selector label {
+			  font-family: Roboto;
+			  font-size: 13px;
+			  font-weight: 300;
+			}
+			
+		.controls {
+		  margin-top: 10px;
+		  border: 1px solid transparent;
+		  border-radius: 2px 0 0 2px;
+		  box-sizing: border-box;
+		  -moz-box-sizing: border-box;
+		  height: 32px;
+		  outline: none;
+		  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+		}
     </style>
-  </head-->
+    
+  </head>
+  
   <body>
+  	
+  	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <script>
 		var geocoder;
@@ -34,12 +80,48 @@
 				zoom: 15,
 				center: {lat: -8.127488, lng: -34.904665}
 			});
+			
+			// Creating the search box and linking .
+	  var input = document.getElementById('pac-input');
+	  var searchBox = new google.maps.places.SearchBox(input);
+	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+	
+	  
+	  // setting the search box result to update the map
+	   google.maps.event.addListener(searchBox, 'places_changed', function() {
+	    searchBox.set('map', null);
+	    var places = searchBox.getPlaces();
+	    var bounds = new google.maps.LatLngBounds();
+	     var i, place;
+	     for (i=0; place = places[i]; i++) {
+	     	bounds.extend(place.geometry.location);
+	     }
+	    
+	    map.fitBounds(bounds);
+	    searchBox.set('map', map);
+	  });
+
+
 			info = <%= render inline: @info%>;
 			geocodeAddress(info);
 		}
+ //var markers = [];
+ // // [START region_getplaces]
+ // // Listen for the event fired when the user selects a prediction and retrieve
+ // // more details for that place.
+  
+ // searchBox.addListener('places_changed', function() {
+ //   var places = searchBox.getPlaces();
+
+ //   if (places.length == 0) {
+ //     return;
+ //   }
+
 
 		function geocodeAddress(info) {
+			
 			for (i=0; i<info.length; i++){
+				
 			(function(information){
 				geocoder.geocode({'address': information.address}, function(results, status) {
 					if (status == 'OK') {
@@ -48,6 +130,7 @@
 							position: results[0].geometry.location
 						});
 						
+						//listener para subir o balaozinho da demanda quando clica no marker
 							marker.addListener('click', function() {
 								var infowindow = new google.maps.InfoWindow({
 									content: generateContent(information.grupo,information.desc,information.data,information.situacao,information.id)
@@ -65,6 +148,8 @@
 
     </script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&libraries=places&callback=initMap"></script>
+
+<!--https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&callback=initMap"-->
   </body>
 </html>
