@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
+tabela = CSV.read("./tabela_tratada.csv")
+
+tabela.each do |row|
+  a = row[0].split(",")
+  b = a[0].to_s
+  a.each do |linha|
+    Servico.create!(:nome => a[1], :grupo_servicos_id => GrupoServico.where("nome = #{b}").ids)
+    end
+  end
+  
