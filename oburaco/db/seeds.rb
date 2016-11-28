@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
+<<<<<<< HEAD
 tabela = CSV.read("./tabela_tratada.csv")
 
 tabela.each do |row|
@@ -17,6 +18,21 @@ tabela.each do |row|
   end
   
   vereadores = [ ["Aderaldo Pinto", "aderaldopinto@hotmail.com", "(81) 3301-1259", "PSB", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/145_foto_parlamentar"],
+=======
+
+=begin
+ require 'csv'
+ tabela = CSV.read("./tabela_tratada.csv")
+
+ tabela.each do |row|
+   a = row[0].split(",")
+   b = "'" << a[0].to_s << "'"
+   Servico.create!(:nome => a[1], :grupo_servicos_id => GrupoServico.where("nome = #{b}").ids[0])
+   end
+=end
+=begin
+vereadores = [ ["Aderaldo Pinto", "aderaldopinto@hotmail.com", "(81) 3301-1259", "PSB", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/145_foto_parlamentar"],
+>>>>>>> b7f3df0917a02facdf9bc080ad99946a614dacd8
                 [ "Aerto Luna", "", "(81) 3301-1343", "PRP", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/x120_foto_parlamentar.pagespeed.ic.ziBb7j0KfS.webp"],
                 ["Aimee Carvalho", "", "(81) 3301-1339", "PSB", "http://www.recife.pe.leg.br/noticias/aimee-carvalho-critica-ideologia-de-genero/image_preview"],
                 ["Alfredo Santana", "", "(81) 3301-1346", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/122_foto_parlamentar" ],
@@ -55,4 +71,61 @@ tabela.each do |row|
                 ["Vera Lopes", "", "813301-1231", "PPS", "http://www.recife.pe.leg.br/noticias/projeto-de-vera-lopes-preve-ressarcimento-de-planos-de-saude/image_preview"],
                 ["Vicente André Gomes", "vicenteandrégomes@bol.com.br", "81 33011242", "PSB", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/84_foto_parlamentar"],
                 ["Wilton Brito", "wiltonbrito@recife.pe.leg.br", "(81) 3301.1214", "PP", "http://www.recife.pe.leg.br/noticias/wilton-brito-sugere-polos-de-cultura-popular-1/image_preview"]
+<<<<<<< HEAD
     ]
+=======
+    ]
+    
+  vereadores.each do |row|
+    Vereador.create!(:nome => row[0], :email => row[1], :telefone => row[2], :partido => row[3], :imagem => row[4])
+end
+
+
+
+Grupos =['ARBORIZAÇÃO',
+'CALÇADAS ARVORES',
+'COLETA SELETIVA',
+'DENUNCIAS',
+'DRENAGEM',
+'ESCADARIA',
+'FISCALIZAÇÃO URBANA',
+'ILUMINAÇÃO PROVISÓRIA',
+'ILUMINAÇÃO PÚBLICA',
+'ILUMINAÇÃO RELUZ',
+'LIMPEZA URBANA',
+'LUMINÁRIAS',
+'MACRODRENAGEM',
+'MANUT. URBANA',
+'NECROPOLES',
+'PAVIMENTAÇÃO',
+'PLANEJAMENTO DE LIMPEZA URBANA',
+'POSTE',
+'PRAÇAS',
+'PROJETOS',
+'SEMENTEIRA',
+'TABLADOS',
+'TERRAPLENAGEM',
+'VÃO DE REDE',
+'COLETA URBANA',
+'ATENDIMENTO EMPREL']
+Grupos.each do |grupo|
+  GrupoServico.create!(:nome => grupo)
+end
+=end
+
+
+
+tabela_demandas = CSV.read("./marcinho.csv")
+
+tabela_demandas.each do |row|
+  servico_descricao = "'" << row[0].to_s << "'"
+  Demanda.create!(:servicos_id => Servico.where("nome = #{servico_descricao}").ids[0],
+  :rua => row[1],
+  :numero => row[2],
+  :bairro => row[3],
+  :RPA => row[4],
+  :data => row[5],
+  :situa => row[6],
+  :data_ult_situa => row[7])
+end
+>>>>>>> b7f3df0917a02facdf9bc080ad99946a614dacd8
