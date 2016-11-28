@@ -50,7 +50,9 @@ class ApplicationController < ActionController::Base
       @info += "data: '#{dado[:data]}', "
       @info += "id: '#{dado[:id]}', "
       @info += "situacao: '#{dado[:situa]}',"
-      @info += "rpa: '#{dado[:rpa]}'},"
+      @info += "rpa: '#{dado[:rpa]}',"
+      @info += "latitude: '#{dado[:latitude]}',"
+      @info += "longitude: '#{dado[:longitude]}'},"
     end
     @info.chop!
     @info += "]"
