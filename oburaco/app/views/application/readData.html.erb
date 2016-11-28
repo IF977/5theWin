@@ -4,14 +4,13 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>Simple markers</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+    body { padding-top: 50px; }
+      
       #map {
-        height: 100%;
+      	height: 500px;
       }
       
 			#pac-input {
@@ -55,22 +54,57 @@
 		  outline: none;
 		  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 		}
+		
     </style>
     
   </head>
   
-  <body>
+  <body><!-- data-spy="scroll" data-target=".navbar" data-offset="50"-->
+  
   	
-  	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
+
+	  	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	    <div id="map" class="oi">
+	    </div>
+   <div id="section2">
+    	<center><div id="handler" class="ui-resizable-s"><img src="images/down.png" style="margin-top:20px;"/></div></center>
+    	<center><p style="font-family: 'Roboto', sans-serif; font-size:30px; margin-top:50px;">Como funciona?</p></center>
+    	<div class="row" style="background-color:#F5F5F5;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="col-md-4">
+                <center><img src="images/palace.png" style="max-height:40px; margin-top: 20px;"></center>
+            
+                <p style="color:#777777; margin-top:20px;margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">Nós exibimos as demandas registradas pela emlurb mais próximas a você! </p>
+            </div>
+            <div class="col-md-4">
+                <center><img src="images/shovel.png" style="max-height:50px; margin-top: 14px; margin-bottom: -4px;"></center>
+                
+               
+               <p style="color:#777777;margin-top:20px; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">Você escolhe uma demanda no mapa e clica em ~Reclamar~</p>
+               <center><a type="button" class="btn btn-primary" href="http://www.recife.pe.gov.br/pr/servicospublicos/emlurb/sgde/spdc/codigo/gui/cadastrarDemandaWeb.php"><p> Não encontrou seu problema?</p></a></center>
+               </div>
+    
+            <div class="col-md-4">
+                <center><img src="images/hero.png" style="max-height:50px; margin-top: 17px; margin-bottom: -7px;"></center>
+                <p style="color:#777777;margin-top:20px; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">Então nós, aleatoriamente, selecionamos três vereadores para que você possa entrar em contato diretamente!</p></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+    	<p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">Ou seja, somos uma ponte entre você,seus problemas e quem pode resolvê-los!</p>
+    </div>
+   </div>
     <script>
 		var geocoder;
 		function generateContent(grupo,desc,data,situacao,id){
-			return '<h1>'+grupo+'</h1>'+
+			return '<span class="glyphicon glyphicon-time" aria-hidden="true" style=font-size:50px;"></span>' + 
+			'<h1 style="display:inline-block;">'+grupo+'</h1>'+
 			'<h2>'+desc+'</h2>'+
 			'<h3>'+data+'</h3>'+
 			'<h3>'+situacao+'</h3>'+
-			'<a href="/'+id+'" class="btn btn-info">Reclamar!</a>';
+			'<center><a href="/'+id+'" class="btn btn-info">Reclamar!</a></center>';
 		}
 		var map;
 		var info;
@@ -145,11 +179,29 @@
 				})(info[i]);
 			}
 		}
-
+	
     </script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&libraries=places&callback=initMap"></script>
-
+	<script
+		src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+		integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+		crossorigin="anonymous"></script>
+		
 <!--https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&callback=initMap"-->
+
+<script>
+
+$(document).ready(function() {
+	var handler = document.getElementById('handler');
+	$(".oi" ).resizable({
+	  handles: {
+	   "s": handler
+	  }
+	});
+})
+</script>
+
+
   </body>
 </html>
