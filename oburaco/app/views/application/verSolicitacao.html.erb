@@ -3,15 +3,19 @@
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-md-1" style="width: 4.16666%"></div>
+        <div class="col-md-1" style="width: 4.16666%">
+            <a href='/'>
+            <i class="fa fa-chevron-left fa-2x" aria-hidden="true" style="color:#000;"></i>
+            </a>
+        </div>
         <div class="col-md-10">
             <div class="col-md-7" style="margin-top: 150px">
                 <div class="col-md-3">
                     <img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=18&size=150x150&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8">
                 </div>
-                <div class="col-md-9">
-                    <b style="font-family: 'Roboto', sans-serif; font-size:30px; margin-left:20px"><%=@solicitacao[:categoria].mb_chars.capitalize%></b>
-                    <p style="font-family: 'Roboto', sans-serif; font-size:20px; margin-left:20px"><%=@solicitacao[:descricao].mb_chars.capitalize%></p>
+                <div class="col-md-9" style="margin-top:35px;">
+                    <b style="font-family: 'Roboto', sans-serif; font-size:30px; margin-left:30px"><%=@solicitacao[:categoria].mb_chars.capitalize%></b>
+                    <p style="font-family: 'Roboto', sans-serif; font-size:20px; margin-left:30px"><%=@solicitacao[:descricao].mb_chars.capitalize%></p>
                 </div>
             </div>
             
@@ -59,7 +63,7 @@
         <div class="col-sm-1"></div>
     </div-->
     
-    <div class="row" style="margin-top:80px; background-color:#F5F5F5;">
+    <div class="row" style="margin-top:40px; background-color:#F5F5F5;">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="col-md-4">
@@ -68,11 +72,11 @@
                 <p style="color:#777777; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">O vereador avalia as necessidades de caráter local, denúncias quanto à prestação dos serviços públicos e busca, pelos instrumentos competentes, solução para os problemas e carências nestas áreas.</p>
             </div>
             <div class="col-md-4">
-                <center><img src="images/worker.png" style="max-height:50px; margin-top: 18px;"></center>
+                <center><img src="images/shovel.png" style="max-height:50px; margin-top: 14px; margin-bottom: -4px;"></center>
                 <p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">Quais problemas estão inclusos?</p>
                 <p style="color:#777777; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">Arborização, saneamento básico, pavimentação, uso do solo, coleta de lixo, iluminação pública, combate à poluição, proteção ambiental, entre outros</p></div>
             <div class="col-md-4">
-                <center><img src="images/hero.png" style="max-height:50px; margin-top: 15px;"></center>
+                <center><img src="images/hero.png" style="max-height:50px; margin-top: 17px; margin-bottom: -7px;"></center>
                 <p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">O que cidadãos podem fazer?</p>
                 <p style="color:#777777; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">Participar ativamente na fiscalização dos problemas urbanos, clamar por soluções dos problemas da sua comunidade, entrando em contato com os vereadores.</p></div>
             </div>
@@ -80,6 +84,11 @@
         <div class="col-md-1"></div>
     </div>
 </div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 <!--footer class="footer">
     <div class="container">
         <p class="text-muted">O buraco é mais embaixo!</p>
