@@ -30,8 +30,33 @@ class ApplicationController < ActionController::Base
       end
       #@solicitacao = {descricao: "Problemas do Mundo", categoria:"Deu ruim", semanas:"15", latitude: -8.0898485,longitude:-34.8834002}
   end
-  
+
   def readData
+    
+
+    demandas = []
+    for i in 1..30
+      demanda = Demanda.find(i)
+      demandas << demanda
+    end
+    
+    @info = "["
+    
+    
+    demandas.each do |dado|
+      @info += "{address: '#{dado[:rua]}, #{dado[:numero]}, #{dado[:bairro]}', "
+      @info += "grupo: '#{GrupoServico.find(Servico.find(dado[:servicos_id]).grupo_servicos_id).nome}', "
+      @info += "desc: '#{Servico.find(dado[:servicos_id]).nome}', "
+      @info += "data: '#{dado[:data]}', "
+      @info += "id: '#{dado[:id]}', "
+      @info += "situacao: '#{dado[:situa]}',"
+      @info += "rpa: '#{dado[:rpa]}'},"
+    end
+    @info.chop!
+    @info += "]"
+
+
+=begin  
     dados = [{id: 148, GRUPOSERVICO_CODIGO: 17, GRUPOSERVICO_DESCRICAO: "ILUMINAÇÃO PÚBLICA", SERVICO_CODIGO: 25, SERVICO_DESCRICAO: "MANUTENÇÃO EM LÂMPADA APAGADA", LOGRADOURO: "RUA PADRE BERNARDINO PESSOA", NUMERO: 0, BAIRRO: "BOA VIAGEM", RPA: 6, DATA_DEMANDA: DateTime.parse("2016-10-31T00:00:00").strftime("%d/%m/%Y"), SITUACAO: "EXECUÇÃO", DATA_ULT_SITUACAO: "2016-10-31T00:00:00", COLOR: "yellow"},
 {id: 274, GRUPOSERVICO_CODIGO: 25, GRUPOSERVICO_DESCRICAO: "PAVIMENTAÇÃO", SERVICO_CODIGO: 65, SERVICO_DESCRICAO: "OPERAÇÃO TAPA-BURACO EM ASFALTO", LOGRADOURO: "RUA DOM JOSE LOPES", NUMERO: 40, BAIRRO: "BOA VIAGEM", RPA: 6, DATA_DEMANDA: DateTime.parse("2016-10-31T00:00:00").strftime("%d/%m/%Y"), SITUACAO: "CADASTRADA", DATA_ULT_SITUACAO: "2016-10-31T00:00:00", COLOR: "red"},
 {id: 126, GRUPOSERVICO_CODIGO: 17, GRUPOSERVICO_DESCRICAO: "ILUMINAÇÃO PÚBLICA", SERVICO_CODIGO: 25, SERVICO_DESCRICAO: "MANUTENÇÃO EM LÂMPADA APAGADA", LOGRADOURO: "RUA  NAVEGANTES", NUMERO: 611, BAIRRO: "BOA VIAGEM", RPA: 6, DATA_DEMANDA: DateTime.parse("2016-10-31T00:00:00").strftime("%d/%m/%Y"), SITUACAO: "EXECUÇÃO", DATA_ULT_SITUACAO: "2016-10-31T00:00:00", COLOR: "yellow"},
@@ -45,6 +70,7 @@ class ApplicationController < ActionController::Base
 {id: 111, GRUPOSERVICO_CODIGO: 17, GRUPOSERVICO_DESCRICAO: "ILUMINAÇÃO PÚBLICA", SERVICO_CODIGO: 25, SERVICO_DESCRICAO: "MANUTENÇÃO EM LÂMPADA APAGADA", LOGRADOURO: "RUA  FAUSTINO PORTO", NUMERO: 265, BAIRRO: "BOA VIAGEM", RPA: 6, DATA_DEMANDA: DateTime.parse("2016-10-31T00:00:00").strftime("%d/%m/%Y"), SITUACAO: "EXECUÇÃO", DATA_ULT_SITUACAO: "2016-10-31T00:00:00", COLOR: "yellow"}]
 @info = "[ "
 
+
 dados.each do |dado|
     @info += "{address: '#{dado[:LOGRADOURO]}, #{dado[:NUMERO]}, #{dado[:BAIRRO]}', "
     @info += "grupo: '#{dado[:GRUPOSERVICO_DESCRICAO]}', "
@@ -56,5 +82,9 @@ dados.each do |dado|
 end
 @info.chop!
 @info += "]"
+  end
+end
+=end
+
   end
 end
