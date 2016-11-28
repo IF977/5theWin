@@ -5,16 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# require 'csv'
-# tabela = CSV.read("./tabela_tratada.csv")
+ require 'csv'
+ tabela = CSV.read("./tabela_tratada.csv")
 
-# tabela.each do |row|
-#   a = row[0].split(",")
-#   b = "'" << a[0].to_s << "'"
-#   Servico.create!(:nome => a[1], :grupo_servicos_id => GrupoServico.where("nome = #{b}").ids[0])
-#   end
+ tabela.each do |row|
+   a = row[0].split(",")
+   b = "'" << a[0].to_s << "'"
+   Servico.create!(:nome => a[1], :grupo_servicos_id => GrupoServico.where("nome = #{b}").ids[0])
+   end
 
-
+=begin
 vereadores = [ ["Aderaldo Pinto", "aderaldopinto@hotmail.com", "(81) 3301-1259", "PSB", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/145_foto_parlamentar"],
                 [ "Aerto Luna", "", "(81) 3301-1343", "PRP", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/x120_foto_parlamentar.pagespeed.ic.ziBb7j0KfS.webp"],
                 ["Aimee Carvalho", "", "(81) 3301-1339", "PSB", "http://www.recife.pe.leg.br/noticias/aimee-carvalho-critica-ideologia-de-genero/image_preview"],
@@ -59,3 +59,36 @@ vereadores = [ ["Aderaldo Pinto", "aderaldopinto@hotmail.com", "(81) 3301-1259",
   vereadores.each do |row|
     Vereador.create!(:nome => row[0], :email => row[1], :telefone => row[2], :partido => row[3], :imagem => row[4])
 end
+=end
+
+=begin
+Grupos =['ARBORIZAÇÃO',
+'CALÇADAS ARVORES',
+'COLETA SELETIVA',
+'DENUNCIAS',
+'DRENAGEM',
+'ESCADARIA',
+'FISCALIZAÇÃO URBANA',
+'ILUMINAÇÃO PROVISÓRIA',
+'ILUMINAÇÃO PÚBLICA',
+'ILUMINAÇÃO RELUZ',
+'LIMPEZA URBANA',
+'LUMINÁRIAS',
+'MACRODRENAGEM',
+'MANUT. URBANA',
+'NECROPOLES',
+'PAVIMENTAÇÃO',
+'PLANEJAMENTO DE LIMPEZA URBANA',
+'POSTE',
+'PRAÇAS',
+'PROJETOS',
+'SEMENTEIRA',
+'TABLADOS',
+'TERRAPLENAGEM',
+'VÃO DE REDE',
+'COLETA URBANA',
+'ATENDIMENTO EMPREL']
+Grupos.each do |grupo|
+  GrupoServico.create!(:nome => grupo)
+end
+=end
