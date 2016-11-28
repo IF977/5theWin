@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
+
+=begin
  require 'csv'
  tabela = CSV.read("./tabela_tratada.csv")
 
@@ -13,7 +16,7 @@
    b = "'" << a[0].to_s << "'"
    Servico.create!(:nome => a[1], :grupo_servicos_id => GrupoServico.where("nome = #{b}").ids[0])
    end
-
+=end
 =begin
 vereadores = [ ["Aderaldo Pinto", "aderaldopinto@hotmail.com", "(81) 3301-1259", "PSB", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/145_foto_parlamentar"],
                 [ "Aerto Luna", "", "(81) 3301-1343", "PRP", "http://sapl.recife.pe.leg.br/sapl_documentos/parlamentar/fotos/x120_foto_parlamentar.pagespeed.ic.ziBb7j0KfS.webp"],
@@ -59,9 +62,9 @@ vereadores = [ ["Aderaldo Pinto", "aderaldopinto@hotmail.com", "(81) 3301-1259",
   vereadores.each do |row|
     Vereador.create!(:nome => row[0], :email => row[1], :telefone => row[2], :partido => row[3], :imagem => row[4])
 end
-=end
 
-=begin
+
+
 Grupos =['ARBORIZAÇÃO',
 'CALÇADAS ARVORES',
 'COLETA SELETIVA',
@@ -92,3 +95,19 @@ Grupos.each do |grupo|
   GrupoServico.create!(:nome => grupo)
 end
 =end
+
+
+
+tabela_demandas = CSV.read("./marcinho.csv")
+
+tabela_demandas.each do |row|
+  servico_descricao = "'" << row[0].to_s << "'"
+  Demanda.create!(:servicos_id => Servico.where("nome = #{servico_descricao}").ids[0],
+  :rua => row[1],
+  :numero => row[2],
+  :bairro => row[3],
+  :RPA => row[4],
+  :data => row[5],
+  :situa => row[6],
+  :data_ult_situa => row[7])
+end
