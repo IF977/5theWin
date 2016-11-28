@@ -54,11 +54,15 @@
 		  outline: none;
 		  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 		}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> geolocalizao
     </style>
     
   </head>
   
+<<<<<<< HEAD
   <body><!-- data-spy="scroll" data-target=".navbar" data-offset="50"-->
   
   	
@@ -96,8 +100,14 @@
     	<p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">Ou seja, somos uma ponte entre você,seus problemas e quem pode resolvê-los!</p>
     </div>
    </div>
+=======
+  <body>
+  	
+  	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+>>>>>>> geolocalizao
     <script>
-		var geocoder;
+		//var geocoder;
 		function generateContent(grupo,desc,data,situacao,id){
 			return '<span class="glyphicon glyphicon-time" aria-hidden="true" style=font-size:50px;"></span>' + 
 			'<h1 style="display:inline-block;">'+grupo+'</h1>'+
@@ -109,7 +119,7 @@
 		var map;
 		var info;
 		function initMap() {
-			geocoder = new google.maps.Geocoder();
+			//geocoder = new google.maps.Geocoder();
 			map = new google.maps.Map(document.getElementById('map'), {
 				zoom: 15,
 				center: {lat: -8.127488, lng: -34.904665}
@@ -126,6 +136,7 @@
 	    searchBox.set('map', null);
 	    var places = searchBox.getPlaces();
 	    var bounds = new google.maps.LatLngBounds();
+<<<<<<< HEAD
 	     var i, place;
 	     for (i=0; place = places[i]; i++) {
 	     	bounds.extend(place.geometry.location);
@@ -136,6 +147,20 @@
 	  });
 
 
+=======
+	    var i, place;
+	    for (i=0; place = places[i]; i++) {
+	    	(function(place) {
+	    		var marker = new google.maps.Marker({
+	    			position: place.geometry.location
+	    		});
+	    		bounds.extend(place.geometry.location);
+	    	}(place));
+	    }
+	    map.fitBounds(bounds);
+	    searchBox.set('map', map);
+	  });
+>>>>>>> geolocalizao
 			info = <%= render inline: @info%>;
 			geocodeAddress(info);
 		}
@@ -146,24 +171,33 @@
   
  // searchBox.addListener('places_changed', function() {
  //   var places = searchBox.getPlaces();
+<<<<<<< HEAD
 
  //   if (places.length == 0) {
  //     return;
  //   }
 
 
+=======
+ //   if (places.length == 0) {
+ //     return;
+ //   }
+>>>>>>> geolocalizao
 		function geocodeAddress(info) {
 			
 			for (i=0; i<info.length; i++){
 				
 			(function(information){
-				geocoder.geocode({'address': information.address}, function(results, status) {
-					if (status == 'OK') {
+				/*geocoder.geocode({'address': information.address}, function(results, status) {
+					if (status == 'OK') {*/
 						var marker = new google.maps.Marker({
 							map: map,
-							position: results[0].geometry.location
+							position: {lat: parseFloat(information.latitude), lng: parseFloat(information.longitude)}
 						});
+<<<<<<< HEAD
 						
+=======
+>>>>>>> geolocalizao
 						//listener para subir o balaozinho da demanda quando clica no marker
 							marker.addListener('click', function() {
 								var infowindow = new google.maps.InfoWindow({
@@ -172,13 +206,14 @@
 								infowindow.open(map, marker);
 							});
 						
-					} else {
-						//alert('Geocode was not successful for the following reason: ' + status);
-					}
-				});
+					/*} else {
+						alert('Geocode was not successful for the following reason: ' + status);
+					}*/
+				
 				})(info[i]);
 			}
 		}
+<<<<<<< HEAD
 	
     </script>
     <script async defer
@@ -203,5 +238,12 @@ $(document).ready(function() {
 </script>
 
 
+=======
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvCpIT70Lvq9ttkVwR4Wxcw1g2YMCWP0Y&libraries=places&callback=initMap"></script>
+
+<!--https://maps.googleapis.com/maps/api/js?key=AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8&callback=initMap"-->
+>>>>>>> geolocalizao
   </body>
 </html>
