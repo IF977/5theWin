@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     
 
     demandas = []
-    for i in 1..30
+    for i in 1..113
       demanda = Demanda.find(i)
       demandas << demanda
     end
