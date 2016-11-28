@@ -2,22 +2,40 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-1"></div>
+        <div class="col-md-1" style="width: 4.16666%"></div>
         <div class="col-md-10">
-            <div class="col-md-2">
-                <img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=18&size=150x150&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8"/>
+            <div class="col-md-7" style="margin-top: 150px">
+                <div class="col-md-3">
+                    <img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=18&size=150x150&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8">
+                </div>
+                <div class="col-md-9">
+                    <b style="font-family: 'Roboto', sans-serif; font-size:30px; margin-left:20px"><%=@solicitacao[:categoria].mb_chars.capitalize%></b>
+                    <p style="font-family: 'Roboto', sans-serif; font-size:20px; margin-left:20px"><%=@solicitacao[:descricao].mb_chars.capitalize%></p>
+                </div>
             </div>
-            <div class="col-md-9">
-                <b style="font-family: 'Roboto', sans-serif; font-size:30px;">
-<%=@solicitacao[:categoria].mb_chars.capitalize%></b>
-                <p style="font-family: 'Roboto', sans-serif; font-size:20px;"><%=@solicitacao[:descricao].mb_chars.capitalize%></p>
+            
+            <div class="col-md-5">
+                <p style="font-family: 'Roboto', sans-serif; font-size:30px; margin-bottom: 30px;">Separamos 3 vereadores:</p>
+                <% @vereadores.each do |vereador| %>
+                    <div class="v1" >
+                        <div class="col-md-3">
+                             <div class="circle" style="width:90px; height:90px;"><%= vereador[:nome].first %></div>
+                        </div>
+                        <div class="col-md-9" style="line-height:75%">
+                            <h2 style="display:inline; font-family: 'Roboto', sans-serif;"><%= vereador[:nome]%></h2>
+                            <p style="font-family: 'Roboto', sans-serif; margin-top: 10px;">Partido: PT</p>
+                            <p style="font-family: 'Roboto', sans-serif;">Email: <%= vereador[:email]%></p>
+                            <p style="margin-bottom: 30px; font-family: 'Roboto', sans-serif;">Telefone: <%= vereador[:telefone]%></p>
+                        </div>
+                    </div>
+                <% end %>
             </div>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1" style="width: 4.16666%">
         </div>
         
     </div>
-    <div class="row" style="margin-top:20px;">
+    <!--div class="row" style="margin-top:20px;">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
             <p style="font-family: 'Roboto', sans-serif; font-size:30px;">Separamos 3 vereadores:</p>
@@ -26,25 +44,25 @@
     <div class="row" style="margin-top:40px;">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
-            <% @vereadores.each do |vereador| %>
+            <=% @vereadores.each do |vereador| %>
             <div class="col-sm-1 col-xs-2">
-                <div class="circle"><%= vereador[:nome].first %></div>
+                <div class="circle"><=%= vereador[:nome].first %></div>
             </div>
             <div class="col-sm-3 col-xs-10">
-                <h2 style="display: inline;"><%= vereador[:nome]%></h2>
-                <p>Email: <%= vereador[:email]%></p>
-                <p>Telefone: <%= vereador[:telefone]%></p>
+                <h2 style="display: inline;"><=%= vereador[:nome]%></h2>
+                <p>Email: <=%= vereador[:email]%></p>
+                <p>Telefone: <=%= vereador[:telefone]%></p>
             </div>
-            <% end %>
+            <=% end %>
         </div>
         <div class="col-sm-1"></div>
-    </div>
+    </div-->
     
-    <div class="row" style="margin-top:100px; background-color:#F5F5F5;">
+    <div class="row" style="margin-top:80px; background-color:#F5F5F5;">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="col-md-4">
-                <center><i class="fa fa-quote-left" aria-hidden="true"></i></center>
+                <center><i class="fa fa-quote-left fa-2x" aria-hidden="true"></i></center>
                 <p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">O que os vereadores fazem?</p>
                 <p style="color:#777777; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">O vereador avalia as necessidades de caráter local, denúncias quanto à prestação dos serviços públicos e busca, pelos instrumentos competentes, solução para os problemas e carências nestas áreas.</p>
             </div>
