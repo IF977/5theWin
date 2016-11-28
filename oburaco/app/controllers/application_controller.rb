@@ -22,8 +22,9 @@ class ApplicationController < ActionController::Base
         end
       end
       #@vereadores = [{nome: "Joao da Silva", email: "joao@hotmail.com", telefone: "(81)987654321"}, {nome: "Maria da Silva", email: "maria@hotmail.com", telefone: "(81)976543218"}, {nome: "Marcio de Aquino", email: "marcinho@bol.com.br", telefone: "(81)naomeligue"}]
+      @vereadores = []
       while @vereadores.size != 3
-        novovereador = Vereador.find(1..39)
+        novovereador = Vereador.find(rand(1..39))
         if not @vereadores.include?(novovereador)
           @vereadores << novovereador
         end
