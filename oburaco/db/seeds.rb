@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
-<<<<<<< HEAD
+=begin
 tabela = CSV.read("./tabela_tratada.csv")
 
 tabela.each do |row|
@@ -128,4 +128,3 @@ tabela_demandas.each do |row|
   :situa => row[6],
   :data_ult_situa => row[7])
 end
->>>>>>> b7f3df0917a02facdf9bc080ad99946a614dacd8
