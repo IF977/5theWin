@@ -2,26 +2,28 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 col-xs-4 col-sm-2"></div>
-        <div class="col-md-6 col-xs-8 col-sm-4">
-            <div class="col-md-3">
-                <img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=16&size=100x100&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8"/>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="col-md-2">
+                <img class="minimap" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&zoom=18&size=150x150&maptype=roadmap&markers=color:blue%7C<%= @solicitacao[:latitude] %>,<%= @solicitacao[:longitude] %>&key=	AIzaSyAo4e1TvziWr4DUZ4swbQ0QMv-PE1ankB8"/>
             </div>
-            <div class="col-md-6">
-                <b><%=@solicitacao[:descricao]%></b>
-                <p><%=@solicitacao[:categoria]%></p>
-            </div>
-            <div class="col-md-3">
-                <img src="/images/clock.png" height="80px" alt="imagem de um relogio"/>
-                <p><%=@solicitacao[:semanas]%> semanas</p>
+            <div class="col-md-9">
+                <b style="font-family: 'Roboto', sans-serif; font-size:30px;">
+<%=@solicitacao[:categoria].mb_chars.capitalize%></b>
+                <p style="font-family: 'Roboto', sans-serif; font-size:20px;"><%=@solicitacao[:descricao].mb_chars.capitalize%></p>
             </div>
         </div>
-        <div class="col-md-3 col-xs-12 col-sm-6">
+        <div class="col-md-1">
         </div>
         
     </div>
-    <div class="row">
-        <h2>Separamos 3 vereadores:</h2>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <p style="font-family: 'Roboto', sans-serif; font-size:30px;">Separamos 3 vereadores:</p>
+        </div>
+    </div>
+    <div class="row" style="margin-top:40px;">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
             <% @vereadores.each do |vereador| %>
@@ -37,8 +39,29 @@
         </div>
         <div class="col-sm-1"></div>
     </div>
+    
+    <div class="row" style="margin-top:100px; background-color:#F5F5F5;">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="col-md-4">
+                <center><i class="fa fa-quote-left" aria-hidden="true"></i></center>
+                <p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">O que os vereadores fazem?</p>
+                <p style="color:#777777; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">O vereador avalia as necessidades de caráter local, denúncias quanto à prestação dos serviços públicos e busca, pelos instrumentos competentes, solução para os problemas e carências nestas áreas.</p>
+            </div>
+            <div class="col-md-4">
+                <center><i class="fa fa-quote-left" aria-hidden="true"></i></center>
+                <p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">Quais problemas estão inclusos?</p>
+                <p style="color:#777777; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">Arborização, saneamento básico, pavimentação, uso do solo, coleta de lixo, iluminação pública, combate à poluição, proteção ambiental, entre outros</p></div>
+            <div class="col-md-4">
+                <center><i class="fa fa-quote-left" aria-hidden="true"></i></center>
+                <p style="color:#777777; font-size: 20px; margin-top:20px; text-align:center;">O que cidadãos podem fazer?</p>
+                <p style="color:#777777; margin-bottom: 20px; text-align:center; margin-right:30px; margin-left:30px;">Participar ativamente na fiscalização dos problemas urbanos, clamar por soluções dos problemas da sua comunidade, entrando em contato com os vereadores.</p></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
 </div>
-<footer class="footer">
+<!--footer class="footer">
     <div class="container">
         <p class="text-muted">O buraco é mais embaixo!</p>
     </div>
