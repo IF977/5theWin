@@ -10,9 +10,7 @@ tabela = CSV.read("./tabela_tratada.csv")
 
 tabela.each do |row|
   a = row[0].split(",")
-  b = a[0].to_s
-  a.each do |linha|
-    Servico.create!(:nome => a[1], :grupo_servicos_id => GrupoServico.where("nome = #{b}").ids)
-    end
+  b = "'" << a[0].to_s << "'"
+  Servico.create!(:nome => a[1], :grupo_servicos_id => GrupoServico.where("nome = #{b}").ids[0])
   end
   
