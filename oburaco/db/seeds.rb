@@ -5,6 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+<<<<<<< HEAD
+=======
+require 'csv'
+=begin
+tabela = CSV.read("./tabela_tratada.csv")
+>>>>>>> povoamentoDB
 
 
 
