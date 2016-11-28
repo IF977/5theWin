@@ -1,4 +1,11 @@
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="container-fluid">
     <div class="row">
@@ -16,9 +23,11 @@
                 <div class="col-md-9" style="margin-top:35px;">
                     <b style="font-family: 'Roboto', sans-serif; font-size:30px; margin-left:30px"><%=@solicitacao[:categoria].mb_chars.capitalize%></b>
                     <p style="font-family: 'Roboto', sans-serif; font-size:20px; margin-left:30px"><%=@solicitacao[:descricao].mb_chars.capitalize%></p>
+                    <div class="fb-share-button" data-href="https://fivethewin-tuxu.c9users.io/<%= @solicitacao[:id] %>" data-layout="button_count" data-size="large" data-mobile-iframe="true" style="margin-left:30px"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffivethewin-tuxu.c9users.io%2F262&amp;src=sdkpreparse">Compartilhar</a></div>
                 </div>
-            </div>
-            
+                    
+        </div>
+        
             <div class="col-md-5">
                 <p style="font-family: 'Roboto', sans-serif; font-size:30px; margin-bottom: 30px;">Separamos 3 vereadores:</p>
                 <% @vereadores.each do |vereador| %>
