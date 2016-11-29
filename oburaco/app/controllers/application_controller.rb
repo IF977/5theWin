@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def verSolicitacao
-      dados = [{id: 148, categoria: "ILUMINAÇÃO PÚBLICA", descricao: "MANUTENÇÃO EM LÂMPADA APAGADA",   latitude: -8.1112669, longitude: -34.8999691, semanas: ((Date.today - Date.parse("2016-10-11T00:00:00"))/7).floor},
+
+=begin
+  dados = [{id: 148, categoria: "ILUMINAÇÃO PÚBLICA", descricao: "MANUTENÇÃO EM LÂMPADA APAGADA",   latitude: -8.1112669, longitude: -34.8999691, semanas: ((Date.today - Date.parse("2016-10-11T00:00:00"))/7).floor},
       {id: 274, categoria: "PAVIMENTAÇÃO",                descricao: "OPERAÇÃO TAPA-BURACO EM ASFALTO", latitude: -8.1278559, longitude: -34.8992795, semanas: ((Date.today - Date.parse("2016-10-15T00:00:00"))/7).floor},
       {id: 126, categoria: "ILUMINAÇÃO PÚBLICA",          descricao: "MANUTENÇÃO EM LÂMPADA APAGADA",   latitude: -8.1267401, longitude: -34.898803,  semanas: ((Date.today - Date.parse("2016-10-18T00:00:00"))/7).floor},
       {id: 260, categoria: "PAVIMENTAÇÃO",                descricao: "OPERAÇÃO TAPA-BURACO EM ASFALTO", latitude: -8.1240252, longitude: -34.9083994, semanas: ((Date.today - Date.parse("2016-09-11T00:00:00"))/7).floor},
@@ -16,11 +18,20 @@ class ApplicationController < ActionController::Base
       {id: 121, categoria: "ILUMINAÇÃO PÚBLICA",          descricao: "MANUTENÇÃO EM LÂMPADA APAGADA",   latitude: -8.1303511, longitude: -34.8997455, semanas: ((Date.today - Date.parse("2016-08-15T00:00:00"))/7).floor},
       {id: 111, categoria: "ILUMINAÇÃO PÚBLICA",          descricao: "MANUTENÇÃO EM LÂMPADA APAGADA",   latitude: -8.1177573, longitude: -34.8986279, semanas: ((Date.today - Date.parse("2016-09-17T00:00:00"))/7).floor}]
 
+
       dados.each do |dado|
         if dado[:id].to_s == params[:id]
           @solicitacao = dado
         end
       end
+=end
+
+      demanda = Demanda.find(params[:id])
+      servico = Servico.find(demanda.servicos_id)
+      grupo = GrupoServico.find(servico.grupo_servicos_id)
+      
+      @solicitacao = []
+      @solicitacao << demanda << servico << grupo
       #@vereadores = [{nome: "Joao da Silva", email: "joao@hotmail.com", telefone: "(81)987654321"}, {nome: "Maria da Silva", email: "maria@hotmail.com", telefone: "(81)976543218"}, {nome: "Marcio de Aquino", email: "marcinho@bol.com.br", telefone: "(81)naomeligue"}]
       @vereadores = []
       while @vereadores.size != 3
